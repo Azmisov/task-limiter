@@ -77,13 +77,13 @@ export class TaskLimiter{
 		this.tasks_running = new Set();
 		/** These tasks are waiting to be run;each entry a function that generates a promise (async
 		 * task) or something else (sync task)
-		 * @type {(function | Promise)[]}
+		 * @type {Array<function|Promise>}
 		 * @private
 		 */ 
 		this.tasks_queued = [];
-		/** Blocked tasks; if this grows too large it means you are not awaiting promise from `add`
-		 * @type {function[][]} Each entry a tuple [fn, resolver]; `fn` is moved to `tasks_queued`
-		 * once resolved
+		/** Blocked tasks; if this grows too large it means you are not awaiting promise from `add`.
+		 * Each entry a tuple [fn, resolver]; `fn` is moved to `tasks_queued` once resolved
+		 * @type {Array.<function[]>}
 		 * @private
 		 */
 		this.tasks_blocked = [];
@@ -94,6 +94,7 @@ export class TaskLimiter{
 		 */
 		this.shifting = 0;
 		/** Listeners for when running/queued/blocked/tasks counts go below a threshold:
+		 * `{[type]: Map(limit => [[lid, resolver_fn], ...])}`
 		 *	
 		 * I chose this structure since I assume the number of unique `limit` values will be very
 		 * small. Better to just loop through all limits than have the cost of maintaining sorted
@@ -103,7 +104,7 @@ export class TaskLimiter{
 		 * resolve in order of lid, so that promises are resolved in the order of creation. Could
 		 * use a heap, but think its overkill: with avg 2 candidates per check, faster to just brute
 		 * force look for the min.
-		 * @type {{[type]: Map(limit => [[lid, resolver_fn], ...])}}
+		 * @type {Object<string, Map<number, Array>>}
 		 * @private
 		 */
 		this.listeners = {};
@@ -170,11 +171,10 @@ export class TaskLimiter{
 	 */
 	get tasks(){ return this.running + this.queued; }
 
-	/**
-	 * Internal method used to register xxxBelow listeners
+	/** Internal method used to register xxxBelow listeners
 	 * @param limit when the count of "type" falls below this limit, the listener is resolved
 	 * @param type one of the vlaues from _task_limiter_counts
-	 * @returns 
+	 * @returns {Promise} 
 	 * @private
 	 */
 	_add_listener(limit, type){
@@ -575,12 +575,12 @@ export class TaskStackSync{
 		 */
 		this.listener = listener;
 		/** Functions/promises that are queued
-		 * @type {(Promise)[]}
+		 * @type {Promise[]}
 		 * @private
 		 */
 		this.queue = [];
 		/** Listeners that are called when the stack empties
-		 * @type {(function|Promise)[]}
+		 * @type {function[]}
 		 * @private
 		 */
 		this.done_listeners = [];

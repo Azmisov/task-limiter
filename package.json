@@ -1,6 +1,6 @@
 {
   "name": "task-limiter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Helpers to queue and limit the number of async running tasks",
   "keywords": [
     "tasks",

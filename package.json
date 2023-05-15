@@ -1,6 +1,6 @@
 {
   "name": "task-limiter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Helpers to queue and limit the number of async running tasks",
   "keywords": [
     "tasks",
@@ -24,7 +24,7 @@
     "url": "git+https://github.com/Azmisov/task-limiter.git"
   },
   "author": "Isaac Nygaard",
-  "license": "GPL-3.0",
+  "license": "LGPL-3.0",
   "bugs": {
     "url": "https://github.com/Azmisov/task-limiter/issues"
   },

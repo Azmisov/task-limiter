@@ -3,5 +3,7 @@ docs_theme/*
 rollup.config.mjs
 package-lock.json
 babel.config.json
+test.mjs
 .gitignore
 .github/*
+*.tgz

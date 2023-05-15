@@ -1,0 +1,41 @@
+{
+  "name": "task-limiter",
+  "version": "1.0.0",
+  "description": "Helpers to queue and limit the number of async running tasks",
+  "keywords": [
+    "tasks",
+    "functions",
+    "promise",
+    "queue",
+    "stack",
+    "asynchronous",
+    "synchronous",
+    "limit",
+    "scheduler"
+  ],
+  "main": "tasklimiter.mjs",
+  "scripts": {
+    "docs": "jsdoc --configure ./node_modules/clean-jsdoc-theme/preset_jsdoc_config.js",
+    "bundle": "rollup --config rollup.config.mjs"
+  },
+  "browserslist": "> 0.25%, not dead",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azmisov/task-limiter.git"
+  },
+  "author": "Isaac Nygaard",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Azmisov/task-limiter/issues"
+  },
+  "homepage": "https://azmisov.github.io/task-limiter/",
+  "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.1.0",
+    "clean-jsdoc-theme": "github:Azmisov/clean-jsdoc-theme",
+    "core-js": "^3.25.5",
+    "rollup": "^3.5.0"
+  }
+}
